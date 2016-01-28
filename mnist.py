@@ -140,6 +140,7 @@ for no in [8,0,4,3]:
 
     shiftx,shifty = getBestShift(gray)
     shifted = shift(gray,shiftx,shifty)
+    gray = shifted
 
     # save the processed images
     cv2.imwrite("pro-img/image_"+str(no)+".png", gray)
