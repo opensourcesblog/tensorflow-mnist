@@ -5,6 +5,7 @@ import numpy as np
 import math
 from scipy import ndimage
 import sys
+import os
 
 def getBestShift(img):
     cy,cx = ndimage.measurements.center_of_mass(img)
@@ -107,6 +108,9 @@ else:
 
 
 
+if not os.path.exists("img/" + image + ".png"):
+    print "File img/" + image + ".png doesn't exist"
+    exit(1)
 
 # read original image
 color_complete = cv2.imread("img/" + image + ".png")
