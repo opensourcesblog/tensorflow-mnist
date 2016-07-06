@@ -2,7 +2,6 @@ import tensorflow as tf
 import input_data
 import cv2
 import numpy as np
-import math
 from scipy import ndimage
 import sys
 import os
@@ -115,11 +114,14 @@ if not os.path.exists("img/" + image + ".png"):
 # read original image
 color_complete = cv2.imread("img/" + image + ".png")
 
+print("read", "img/" + image + ".png")
 # read the bw image
-gray_complete = cv2.imread("img/" + image + ".png", cv2.CV_LOAD_IMAGE_GRAYSCALE)
+gray_complete = cv2.imread("img/" + image + ".png", 0)
 
 # better black and white version
-(thresh, gray_complete) = cv2.threshold(255-gray_complete, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+_, gray_complete = cv2.threshold(255-gray_complete, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+print(gray_complete)
+
 cv2.imwrite("pro-img/compl.png", gray_complete)
 
 digit_image = -np.ones(gray_complete.shape)

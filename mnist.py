@@ -73,8 +73,9 @@ sess = tf.Session()
 sess.run(init)
 
 # use 1000 batches with a size of 100 each to train our net
-for i in range(1000):
+for i in range(1):
   batch_xs, batch_ys = mnist.train.next_batch(100)
+  print(batch_xs)
   # run the train_step function with the given image values (x) and the real output (y_)
   sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 
@@ -100,7 +101,7 @@ correct_vals = np.zeros((4,10))
 i = 0
 for no in [8,0,4,3]:
     # read the image
-    gray = cv2.imread("blog/own_"+str(no)+".png", cv2.CV_LOAD_IMAGE_GRAYSCALE)
+    gray = cv2.imread("blog/own_"+str(no)+".png", 0)
 
     # rescale it
     gray = cv2.resize(255-gray, (28, 28))
@@ -174,4 +175,3 @@ using our generated arrays (images and correct_vals)
 """
 print sess.run(prediction, feed_dict={x: images, y_: correct_vals})
 print sess.run(accuracy, feed_dict={x: images, y_: correct_vals})
-
