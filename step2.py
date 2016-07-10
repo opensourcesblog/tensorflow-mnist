@@ -73,6 +73,7 @@ sess = tf.Session()
 # initialize all variables and run init
 sess.run(tf.initialize_all_variables())
 if train:
+    print("TRAIN!!!")
     # create a MNIST_data folder with the MNIST dataset if necessary
     mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 
@@ -105,6 +106,11 @@ else:
         print 'No checkpoint found'
         exit(1)
 
+    mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+    correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
+    print "accuracy: ", sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
+
 
 
 if not os.path.exists("img/" + image + ".png"):
@@ -120,7 +126,6 @@ gray_complete = cv2.imread("img/" + image + ".png", 0)
 
 # better black and white version
 _, gray_complete = cv2.threshold(255-gray_complete, 128, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
-print(gray_complete)
 
 cv2.imwrite("pro-img/compl.png", gray_complete)
 

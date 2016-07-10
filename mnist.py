@@ -73,9 +73,8 @@ sess = tf.Session()
 sess.run(init)
 
 # use 1000 batches with a size of 100 each to train our net
-for i in range(1):
+for i in range(1000):
   batch_xs, batch_ys = mnist.train.next_batch(100)
-  print(batch_xs)
   # run the train_step function with the given image values (x) and the real output (y_)
   sess.run(train_step, feed_dict={x: batch_xs, y_: batch_ys})
 
