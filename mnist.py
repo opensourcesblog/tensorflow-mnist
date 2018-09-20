@@ -89,7 +89,7 @@ We use the keys "images" and "labels" for x and y_
 """
 correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
-print sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
+print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
 
 # create an an array where we can store our 4 pictures
 images = np.zeros((4,784))
@@ -172,5 +172,5 @@ prediction = tf.argmax(y,1)
 we want to run the prediction and the accuracy function
 using our generated arrays (images and correct_vals)
 """
-print sess.run(prediction, feed_dict={x: images, y_: correct_vals})
-print sess.run(accuracy, feed_dict={x: images, y_: correct_vals})
+print(sess.run(prediction, feed_dict={x: images, y_: correct_vals}))
+print(sess.run(accuracy, feed_dict={x: images, y_: correct_vals}))

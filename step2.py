@@ -8,7 +8,7 @@ import os
 
 def getBestShift(img):
     cy,cx = ndimage.measurements.center_of_mass(img)
-    print cy,cx
+    print(cy,cx)
 
     rows,cols = img.shape
     shiftx = np.round(cols/2.0-cx).astype(int)
@@ -94,7 +94,7 @@ if train:
     """
     correct_prediction = tf.equal(tf.argmax(y,1), tf.argmax(y_,1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
-    print sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
+    print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
 else:
     # Here's where you're restoring the variables w and b.
     # Note that the graph is exactly as it was when the variables were
@@ -103,24 +103,24 @@ else:
     if ckpt and ckpt.model_checkpoint_path:
         saver.restore(sess, ckpt.model_checkpoint_path)
     else:
-        print 'No checkpoint found'
+        print('No checkpoint found')
         exit(1)
 
     mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
     correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
     accuracy = tf.reduce_mean(tf.cast(correct_prediction, "float"))
-    print "accuracy: ", sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels})
+    print("accuracy: ", sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
 
 
 
 if not os.path.exists("img/" + image + ".png"):
-    print "File img/" + image + ".png doesn't exist"
+    print("File img/" + image + ".png doesn't exist")
     exit(1)
 
 # read original image
 color_complete = cv2.imread("img/" + image + ".png")
 
-print("read", "img/" + image + ".png")
+print(("read", "img/" + image + ".png"))
 # read the bw image
 gray_complete = cv2.imread("img/" + image + ".png", 0)
 
@@ -172,8 +172,8 @@ for cropped_width in range(100, 300, 20):
                             0.2*actual_w_h[0]*actual_w_h[1]):
                     continue
 
-                print "------------------"
-                print "------------------"
+                print("------------------")
+                print("------------------")
 
                 rows,cols = gray.shape
                 compl_dif = abs(rows-cols)
@@ -203,15 +203,15 @@ for cropped_width in range(100, 300, 20):
                 flatten = gray.flatten() / 255.0
 
 
-                print "Prediction for ",(shift_x, shift_y, cropped_width)
-                print "Pos"
-                print top_left
-                print bottom_right
-                print actual_w_h
-                print " "
+                print("Prediction for ",(shift_x, shift_y, cropped_width))
+                print("Pos")
+                print(top_left)
+                print(bottom_right)
+                print(actual_w_h)
+                print(" ")
                 prediction = [tf.reduce_max(y),tf.argmax(y,1)[0]]
                 pred = sess.run(prediction, feed_dict={x: [flatten]})
-                print pred
+                print(pred)
 
 
                 digit_image[top_left[0]:bottom_right[0],top_left[1]:bottom_right[1]] = pred[1]
