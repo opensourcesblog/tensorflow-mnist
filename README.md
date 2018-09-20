@@ -10,7 +10,7 @@ This is a project familiarizing myself with tensorflow and the MNIST database.
 The aim is to develop some kind of handwriting software.
 I will try to add some kind of letter/digit recognition to be able to extract the handwritten words and letters/digits from a photo.
 
-To me to be able to run this software, there were some steps I had to take:
+For me to be able to run this software, there were some steps I had to take:
 (This is from my installation notes)
 
 Install 64-bit Python 3.5 (minimum):
