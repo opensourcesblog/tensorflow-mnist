@@ -152,7 +152,7 @@ ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
 if ckpt and ckpt.model_checkpoint_path:
     saver.restore(sess, ckpt.model_checkpoint_path)
 else:
-    print 'No checkpoint found'
+    print('No checkpoint found')
     exit(1)
 
 if len(sys.argv) > 2:
