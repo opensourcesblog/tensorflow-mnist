@@ -24,4 +24,4 @@ for i in range(0, len(ret_vals)):
 	print(" ")
 	print("----------")
 
-print("A modified image with the predictions: \pro-img\test_2_digitized_image.png")
+print("A modified image with the predictions: pro-img/IMAGE_NAME_digitized_image.png")

@@ -180,3 +180,6 @@ def train_and_predict(input_images):
 	#print(sess.run(prediction, feed_dict={x: images, y_: correct_vals}))
 	return(sess.run(prediction, feed_dict={x: images, y_: correct_vals}))
 	print(sess.run(accuracy, feed_dict={x: images, y_: correct_vals}))
+
+if __name__ == '__main__':
+    train_and_predict([0, 8, 4, 3])
